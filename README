@@ -1,0 +1,30 @@
+This is a very simple wrapper library to test for and use a variety of
+third-party APIs to try and geolocate a client.
+
+# EXAMPLE
+
+ args = {
+	'enable_logging' : true,
+ };
+
+ doThisOnSuccess = function(lat, lon){ ... };
+ doThisIfNot = function(error_msg){ ... };
+
+ var loc = new info.aaronland.geo.Location(args);
+ loc.findMyLocation(doThisOnSuccess, doThisIfNot);
+
+# PRECEDENCE
+
+The order of precedence for positioning is:
+
+    * Loki/Skyhook API
+
+      Loki is first on the assumption that if you've passed a Loki API key then
+      it's probably what you want to use; this may not hold true if you're using
+      a browser/device with a built-in GPS unit but one step at a time.
+
+    * Geode API (Firefox, only)
+
+    * Google Gears Geolocation API
+
+    * Google ClientLocation API (IP lookups)
